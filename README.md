@@ -1,6 +1,16 @@
 # Vaadin Integration example for Bryntum Gantt Chart
 
-*To run the example, download Bryntum Gantt library and install it to /fronend folder. See more from Runnint the Application section below.*
+- fork of https://github.com/mstahv/bryntum-gantt-vaadin with the following changes
+
+  * Java 17
+  * Vaadin 23.2
+  * Spring Boot 2.7
+  * using Gantt Chart Trial version 5.2.4
+  * including der WebComponent version gantt.wc.module.js instead of gantt.module.js
+
+
+
+*To run the example, download Bryntum Gantt library and install it to /fronend folder. See more from Running the Application section below.*
 
 This project currently contains a PoC of [Bryntum Gantt Chart](https://www.bryntum.com/products/gantt/) integration for Vaadin. It can render basic charts, but the API has not been tested in any real app. Also, it is currently not packaged as a Vaadin add-on, but just contains implementation in a Spring Boot project.
 

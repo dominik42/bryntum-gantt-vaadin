@@ -17,12 +17,14 @@ import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.function.SerializableConsumer;
 
-@JsModule(value = "./gantt.module.js")
+//@Tag("bryntum-gantt")
+@JsModule(value = "./gantt.wc.module.js")
 @JavaScript("./ganttConnector.js")
-@CssImport("./gantt.default.css")
+@CssImport("./gantt.classic.css")
 public class GanttChart extends Div {
-	
-	private static ObjectMapper mapper = new ObjectMapper(); 
+
+
+	private static ObjectMapper mapper = new ObjectMapper();
 	static {
 		mapper.registerModule(new JavaTimeModule());
 	    mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
@@ -40,12 +42,12 @@ public class GanttChart extends Div {
 		rows.add(ganttRow);
 		return ganttRow;
 	}
-	
+
     void runBeforeClientResponse(SerializableConsumer<UI> command) {
         getElement().getNode().runWhenAttached(ui -> ui
                 .beforeClientResponse(this, context -> command.accept(ui)));
     }
-    
+
     private List<DependencyTuple> calculateDeps() {
     	LinkedList<DependencyTuple> deps = new LinkedList<>();
     	for (GanttRow row : rows) {

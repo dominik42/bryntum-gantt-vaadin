@@ -3,12 +3,11 @@ package com.example.test;
 import java.time.LocalDate;
 import java.util.Arrays;
 
-import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 
-@Route
-public class MainView extends VerticalLayout {
+@Route(value = "")
+public class GanttView extends VerticalLayout {
 
 	/**
 	 * Construct a new Vaadin view.
@@ -18,9 +17,7 @@ public class MainView extends VerticalLayout {
 	 * @param service The message service. Automatically injected Spring managed
 	 *                bean.
 	 */
-	public MainView() {
-		add(new H1("Vaadin integration for Brymtum Gantt Chart"));
-
+	public GanttView() {
 		GanttChart ganttChart = new GanttChart();
 
 		LocalDate today = LocalDate.now();
@@ -56,7 +53,7 @@ public class MainView extends VerticalLayout {
 		runTests.setStartDate(today.plusDays(5));
 		runTests.setDuration(2);
 		webServer.getChildren().add(runTests);
-		
+
 		Dependency dependency = new Dependency(runTests);
 		dependency.setLag(2);
 		apache.getDependencies().add(dependency);
@@ -64,6 +61,15 @@ public class MainView extends VerticalLayout {
 			.forEach(row -> row.addDependency(runTests));
 
 		addAndExpand(ganttChart);
+
+        ganttChart.getElement().addEventListener("click", event -> {
+            System.out.println("click: " + event);
+        });
+        ganttChart.getElement().addEventListener("taskresizeend", event -> {
+            System.out.println(event);
+        });
+
+
 	}
 
 }
