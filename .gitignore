@@ -2,3 +2,7 @@ frontend/generated
 node_modules/
 target/
 .vscode/
+frontend/gantt.classic.css
+frontend/gantt.custom.locale.De.js
+frontend/gantt.module.js
+.idea/

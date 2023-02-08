@@ -10,15 +10,18 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.vaadin.flow.component.AttachEvent;
+import com.vaadin.flow.component.ComponentEventListener;
+import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dependency.JavaScript;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.function.SerializableConsumer;
+import com.vaadin.flow.shared.Registration;
 
-//@Tag("bryntum-gantt")
-@JsModule(value = "./gantt.wc.module.js")
+@Tag("bryntum-gantt")
+@JsModule(value = "./gantt.module.js")
 @JavaScript("./ganttConnector.js")
 @CssImport("./gantt.classic.css")
 public class GanttChart extends Div {
@@ -78,5 +81,13 @@ public class GanttChart extends Div {
 			}
 		});
     }
+
+	public Registration addTaskResizeEndListener(ComponentEventListener<TaskResizeEndEvent> listener) {
+		return this.addListener(TaskResizeEndEvent.class, listener);
+	}
+
+	public Registration addTaskDropListener(ComponentEventListener<TaskDropEvent> listener) {
+		return this.addListener(TaskDropEvent.class, listener);
+	}
 
 }
