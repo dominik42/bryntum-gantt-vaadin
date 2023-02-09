@@ -12,7 +12,7 @@ window.Vaadin.Flow.brymtumGanttConnector = {
 
             const myCal = new CalendarModel({
                 //id        : 42,
-                name      : "HWG Kalender",
+                name      : "My calendar",
                 intervals : [
                     {
                         recurrentStartDate : "on Sat at 0:00",
@@ -109,4 +109,3 @@ window.Vaadin.Flow.brymtumGanttConnector = {
 
 	    } // end initLazy
 }
-//project.load();

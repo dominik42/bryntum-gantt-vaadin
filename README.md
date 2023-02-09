@@ -6,14 +6,32 @@
   * Vaadin 23.2
   * Spring Boot 2.7
   * tested with Gantt Chart Trial v5.2.4 full version 5.2.7
-  * event propagating from Gantt chart component to Vaadin Flow Application 
-
+  * customized gantt chart (different calendar, view preset) 
+  * event propagating from Gantt chart component to Vaadin Flow Application
+  
 
 *To run the example, download Bryntum Gantt library and install it to /fronend folder. See more from Running the Application section below.*
 
-This project currently contains a PoC of [Bryntum Gantt Chart](https://www.bryntum.com/products/gantt/) integration for Vaadin. It can render basic charts, but the API has not been tested in any real app. Also, it is currently not packaged as a Vaadin add-on, but just contains implementation in a Spring Boot project.
+This project currently contains a PoC of [Bryntum Gantt Chart](https://www.bryntum.com/products/gantt/) integration for Vaadin. It can render basic charts, but it is currently not packaged as a Vaadin add-on, but just contains implementation in a Spring Boot project.
+
+## Event propagation
+
+In order to propagate events from the frontend Gantt chart component back to your Vaadin Flow Application, the following steps are necessary
+
+* declare the event listener for the gantt chart in ganttConnector.js (see examples for taskResizeEnd and taskDrop events)
+* implement the corresponding event classes in your Vaadin Flow Backend, `extends ComponentEvent<GanttChart>` (see com.example.test.TaskResizeEndEvent.java)
+* enable the GanttChart.java for adding event listeners
+* add event listeners anywhere in your Flow Application (e.g. within your View class)
+* the examples contains such listeners for two events:
+    * taskDrop - move a whole task onto a new start date
+    * taskResizeEnd - change the end date of a given task
+    * the labels above the Gantt chart shows the event results 
 
 ![Screenshot](https://github.com/dominik42/bryntum-gantt-vaadin/blob/master/screenshot.png?raw=true "Screenshot")
+
+## Localization
+
+* you can localize your gantt chart by adding `frontend/gantt.custom.locale.<LOCALE>.js` e.g. `frontend/gantt.custom.locale.De.js` as documented [here](https://bryntum.com/products/gantt/docs/guide/Gantt/customization/localization)
 
 
 Note, the LICENSE applies only to the integration part, not to the Bryntum Gantt Chart.
